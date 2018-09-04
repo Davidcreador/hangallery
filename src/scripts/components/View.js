@@ -15,7 +15,7 @@ export default class View {
       let selectedImagePlaceholder = document.querySelector('.showcase-image');
       let gallery = document.querySelector('.gallery');
 
-      // Call lazyload images to better performance
+      // lazyload images to better performance
       this.lazyLoadImages(imagesNodeList);
 
       // Attach eventListener to the images
@@ -52,7 +52,10 @@ export default class View {
     return html`
       ${this.data.map((dt, i) => {
         return html`
-          <img data-src="${dt.uri}" class="gallery-image thumbnail-${i}" alt="${dt.name}">
+          <div class="image-wrapper">
+            <img data-src="${dt.uri}" class="gallery-image thumbnail-${i}" alt="${dt.name}">
+            <span class="small-cap">${dt.name}</span>
+          </div>
         `;
       })}
     `;
@@ -74,7 +77,7 @@ export default class View {
     return (this.element.innerHTML = html`
       <div class="container">
         <div class="header">
-          <h1 class="title">Welcome to Hangallery</h1>
+          <h1 class="title">Welcome to <span>Hangallery</span></h1>
           </div>
         <div class="gallery">
           <div class="showcase-gallery-image">
