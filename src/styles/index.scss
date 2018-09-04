@@ -1,5 +1,26 @@
-$body-color: blue;
-
 body {
-  color: $body-color;
-}  
+  font-family: 'Open Sans', sans-serif;
+}
+
+.header {
+  text-align: center;
+  .title {
+    font-size: 60px;
+  }
+}
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+
+  .gallery-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 10px 0;
+
+    .gallery-image-holder {
+    }
+  }
+}
