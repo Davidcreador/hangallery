@@ -1,45 +1,25 @@
 import '../styles/index.scss';
 import 'normalize.css';
-
-const dogs = [{ name: 'Snickers', age: 2 }, { name: 'Hugo', age: 8 }, { name: 'Sunny', age: 1 }];
+import View from './components/View';
+import GalleryService from '../services/gallery-service';
 
 class App {
-  addEventListeners() {
-    // wait until DOM is loaded
-    setTimeout(() => {
-      Array.from(document.querySelectorAll('.gallery-image')).forEach(elem =>
-        elem.addEventListener('click', e => console.log('hhhh', e.target))
-      );
-    }, 0);
+  constructor() {
+    this.service = new GalleryService();
+    this.data = this.getData();
+    this.view = new View(this.data);
+  }
+
+  getData() {
+    return this.service.getImages().data;
   }
 
   render() {
-    this.addEventListeners();
-    return `
-      <div id="markup">
-        <div class="header">
-          <h1 class="title">Welcome to Hangallery</h1>
-        </div>
-        <div class="gallery">
-          <div class="gallery-row">
-            ${dogs.map(dog => {
-              return `
-                <div class="gallery-image-holder">
-                  <img class="gallery-image 1" src="https://placehold.it/300/300" alt="">
-                  <span>${dog.name}</span>
-                </div>
-              `;
-            })}
-          </div>
-        </div>
-      </div>
-    `;
+    this.view.render();
   }
 }
 
 const app = new App();
 
 // Render app to the DOM
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('app').innerHTML = app.render();
-});
+document.addEventListener('DOMContentLoaded', () => app.render());
